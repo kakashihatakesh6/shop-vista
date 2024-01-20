@@ -204,6 +204,8 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 
 }
 
+export default Post;
+
 export async function getServerSideProps(context) {
 
     if (!mongoose.connections[0].readyState) {
@@ -228,4 +230,4 @@ export async function getServerSideProps(context) {
 }
 
 
-export default Post;
+

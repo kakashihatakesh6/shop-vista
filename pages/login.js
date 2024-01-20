@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
+import axios from "axios";
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -22,15 +23,9 @@ const Login = () => {
 
     let apiUrl = `${process.env.NEXT_PUBLIC_HOST}/api/login`;
 
-    let res = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    let res = await axios.post(apiUrl, {data})
 
-    let response = await res.json();
+    let response = res.data;
 
     console.log(response);
 
