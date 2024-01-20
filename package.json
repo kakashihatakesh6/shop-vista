@@ -9,10 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
-    "@tabler/icons-react": "^2.44.0",
     "axios": "^1.6.5",
     "crypto-js": "^4.2.0",
     "jsonwebtoken": "^9.0.2",
