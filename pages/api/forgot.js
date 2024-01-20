@@ -1,6 +1,6 @@
-import connectDb from "@/middleware/mongoose";
-import Forgot from "@/models/Forgot";
-import User from "@/models/User";
+import connectDb from "../../middleware/mongoose";
+import Forgot from "../../models/Forgot";
+import User from "../../models/User";
 const nodemailer = require("nodemailer");
 var CryptoJS = require("crypto-js");
 
