@@ -19,28 +19,31 @@ Note:- If you are a complete beginner ignore these files package.json, config.js
 
 ## Features
 
-- Responsive design for various devices such as desktop, mobile and tab.
-- Sections for showcasing skills, projects, education, and contact information.
-- Interactive elements and smooth transitions for a better user experience.
-- A Custom ChatBot for site information
+•	Frontend development using Next JS for creating interactive, intuitive and responsive UI.
+•	Backend implementation using Node.js and Express.js to handle API and database integration.
+•	Database management utilized MongoDB as the database to store and manage products.
+•	Payment Integration: Implemented Razor pay gateway with pre and post transaction API integration.
+•	User authentication: Implemented user authentication and authorization using JWT and node mailer.
 
 ## Technologies Used
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Some Additional js files for animation such as typeJs, Bootstrap Icons, Bootstrap Vendor files, flickity etc.
+•	Frontend – Next JS, React JS, Redux, JavaScript
+•	Backend – Nodejs, Express, Next JS, JavaScript
+•	DevOps – Docker
+•	Database – MongoDB, Mongoose
 
 ## Project Structure
 The repository follows a specific structure to keep the codebase organized. Below is an overview of the main directories and files:
 
-- **`/assets`**: This directory contains all the static assets used in the website, such as images, icons, and other multimedia files.
+- **`/pages`**: This directory contains all the routes in the website, such as home, checkout, and other route files.
 
-- **`/css`**: The styles for the portfolio are defined in this directory. It includes separate files for different sections or components to maintain a modular and organized approach.
+- **`/pages/api`**: Api's for the shop-vista are defined in this directory. It includes separate files for different apis or components to maintain a modular and organized approach.
 
-- **`/js`**: JavaScript files are stored here. These scripts are responsible for adding interactivity and dynamic behavior to the portfolio.
+- **`/admin`**: Admin files are stored here. These scripts are responsible for adding interactivity and dynamic behavior to the Admin panel.
 
-- **`index.html`**: The main HTML file that structures the entire portfolio. This is where you'll find the layout, sections, and content of the website.
+- **`middleware`**: Custum middleware for connecting next API's to mongoDb.
+- 
+- **`models`**: Custom models for creating schemas for storing data into databse.
 
 - **`LICENSE`**: The project's license file, specifying the terms under which the code is distributed.
 
@@ -61,16 +64,16 @@ The repository follows a specific structure to keep the codebase organized. Belo
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/kakashihatakesh6/my-portfolio.git
-   cd my-portfolio
+   git clone https://github.com/kakashihatakesh6/shop-vista
+   cd shop-vista
 
 ## Deployment
    
-   Easy deployment through github pages 
+   Easy deployment through Vercel & Netlify
 
--> github pages
+-> Vercel
 
--> 000Webhost
+-> Netlify
 
 ## Contributing
 
