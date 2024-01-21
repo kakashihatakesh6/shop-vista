@@ -1,4 +1,5 @@
 # Nikhil's Portfolio Website
+![checkout](https://github.com/kakashihatakesh6/shop-vista/assets/95236055/3fac5b86-c933-4399-9813-51eddde6be7e)
 
 ![nikhildasarportfolio](https://github.com/kakashihatakesh6/my-portfolio/assets/95236055/f3595870-44b7-40c2-bb22-33ba836b391a)
 
