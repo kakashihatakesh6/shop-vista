@@ -28,10 +28,11 @@ const Navbar = ({
     if (exempted.includes(router.pathname)) {
       setSidebar(false)
     }
+    if (localStorage.getItem('token')) {
 
-
-    const u = JSON.parse(localStorage.getItem("myUser"));
-    setmyuser(u);
+      const u = JSON.parse(JSON.stringify(localStorage.getItem("myUser")));
+      setmyuser(u);
+    }
 
   }, [])
 
