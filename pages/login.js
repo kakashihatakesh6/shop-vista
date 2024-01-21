@@ -22,6 +22,7 @@ const Login = () => {
     const data = { email, password };
 
     let apiUrl = `${process.env.NEXT_PUBLIC_HOST}/api/login`;
+    
     // let axiosConfig = {
     //   headers: {
     //     'Content-Type': 'application/json',
@@ -29,10 +30,8 @@ const Login = () => {
     //   }
     // };
 
-    let res = await axios.post(apiUrl, { data })
-
-    let response = res.data;
-
+    let res = await axios.post(apiUrl, { data });
+    let response = await res.data;
     console.log(response);
 
     if (response.success == true) {
