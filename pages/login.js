@@ -16,14 +16,20 @@ const Login = () => {
       router.push('/')
     }
   }, [])
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { email, password };
 
     let apiUrl = `${process.env.NEXT_PUBLIC_HOST}/api/login`;
+    let axiosConfig = {
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+      }
+    };
 
-    let res = await axios.post(apiUrl, {data})
+    let res = await axios.post(apiUrl, axiosConfig, { data })
 
     let response = res.data;
 
