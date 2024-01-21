@@ -22,14 +22,14 @@ const Login = () => {
     const data = { email, password };
 
     let apiUrl = `${process.env.NEXT_PUBLIC_HOST}/api/login`;
-    let axiosConfig = {
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        "Access-Control-Allow-Origin": "*",
-      }
-    };
+    // let axiosConfig = {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     "Access-Control-Allow-Origin": "*",
+    //   }
+    // };
 
-    let res = await axios.post(apiUrl, { data }, axiosConfig)
+    let res = await axios.post(apiUrl, { data })
 
     let response = res.data;
 
