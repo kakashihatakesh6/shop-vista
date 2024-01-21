@@ -1,9 +1,7 @@
-# Nikhil's Portfolio Website
-![checkout](https://github.com/kakashihatakesh6/shop-vista/assets/95236055/3fac5b86-c933-4399-9813-51eddde6be7e)
+# Shop-Vista (E-Commerce)
+## Introduction![home](https://github.com/kakashihatakesh6/shop-vista/assets/95236055/63d49adc-a73c-4a56-90c3-196b06de0c38)
+![payment](https://github.com/kakashihatakesh6/shop-vista/assets/95236055/5bd10b6c-8bcd-4894-80f5-14e8da4758c6)
 
-![nikhildasarportfolio](https://github.com/kakashihatakesh6/my-portfolio/assets/95236055/f3595870-44b7-40c2-bb22-33ba836b391a)
-
-## Introduction
 
 Welcome to the GitHub repository for my personal portfolio website. This repository contains the source code, assets, and documentation for my portfolio, showcasing my skills, projects, and achievements.
 
