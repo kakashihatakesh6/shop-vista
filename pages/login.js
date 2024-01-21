@@ -29,7 +29,7 @@ const Login = () => {
       }
     };
 
-    let res = await axios.post(apiUrl, axiosConfig, { data })
+    let res = await axios.post(apiUrl, { data }, axiosConfig)
 
     let response = res.data;
 
