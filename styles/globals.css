@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  background: #f1f2f4;
+}
 .swiper {
   width: 100%;
   height: 300px;
@@ -25,7 +28,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: conatain;
   /* object-position: top; */
 }
 

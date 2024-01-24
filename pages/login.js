@@ -19,40 +19,57 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = { email, password };
 
-    let apiUrl = `${process.env.NEXT_PUBLIC_HOST}/api/login`;
-    
-    // let axiosConfig = {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     "Access-Control-Allow-Origin": "*",
-    //   }
-    // };
+    try {
+      const data = { email, password };
+      let apiUrl = `${process.env.NEXT_PUBLIC_HOST}/api/login`;
 
-    let res = await axios.post(apiUrl, { data });
-    let response = await res.data;
-    console.log(response);
+      // let axiosConfig = {
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     "Access-Control-Allow-Origin": "*",
+      //   }
+      // };
 
-    if (response.success == true) {
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("myUser", JSON.stringify(response.myUser));
-      toast.success("You are successfully logged in!", {
-        position: "top-left",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      let res = await axios.post(apiUrl, { data });
+      let response = await res.data;
+      console.log(response);
 
-      setTimeout(() => {
-        router.push("/");
-      }, 1000);
-    } else {
-      toast.error("response.error", {
+      if (response.success == true) {
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("myUser", JSON.stringify(response.myUser));
+        toast.success("You are successfully logged in!", {
+          position: "top-left",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+
+        setTimeout(() => {
+          router.push("/");
+        }, 1000);
+      } else {
+        toast.error("response.error", {
+          position: "top-left",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+
+      setEmail("");
+      setPassword("");
+
+    } catch (error) {
+      toast.error("Please Enter The Valid Credentials", {
         position: "top-left",
         autoClose: 1000,
         hideProgressBar: false,
@@ -64,8 +81,10 @@ const Login = () => {
       });
     }
 
-    setEmail("");
-    setPassword("");
+
+
+
+
   };
 
   const handleChange = (e) => {

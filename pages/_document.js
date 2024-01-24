@@ -5,7 +5,7 @@ export default function Document() {
   return (
     <Html lang="en" className='overflow-x-hidden'>
       <Head>
-        <link rel="icon" href="/wearme-favicon.png" />
+        <link rel="icon" href="/logo-shop-round.png" />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"

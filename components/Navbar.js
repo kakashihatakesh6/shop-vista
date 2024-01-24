@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +7,9 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
 import { useRouter } from "next/router";
+import { FaRegUserCircle } from "react-icons/fa";
+import { PiDotsThreeVertical } from "react-icons/pi";
+
 
 const Navbar = ({
   user,
@@ -71,30 +75,27 @@ const Navbar = ({
       <div className={`flex flex-col navbar justify-center md:flex-row
      md:justify-start items-center py-2 shadow-md sticky top-0
       bg-white z-10 ${!sidebar && 'overflow-hidden'}`}>
-        <div className="logo mx-8 ">
+        <div className="logo mx-8 " style={{ width: 'auto', height: 'auto' }}>
           <Link href={"/"}>
-            <Image
-              src={"/wearme-bar.png"}
-              width={100}
-              height={20}
-              alt=""
-              style={{ width: "auto", height: "auto" }}
-            />
+            <img src="/logo-shopvista.png" alt="image-logo" style={{ width: "101px", height: "41px" }} />
           </Link>
         </div>
         <div className="nav my-2 mx-12">
           <ul className="flex items-center space-x-3 md:text-md font-bold">
             <Link href={"/tshirts"}>
-              <li className="hover:text-orange-600">Tshirts</li>
+              <li className="hover:text-orange-600">Smartphones</li>
+            </Link>
+            <Link href={"/tshirts"}>
+              <li className="hover:text-orange-600">Clothes</li>
             </Link>
             <Link href={"/hoodies"}>
-              <li className="hover:text-orange-600">Hoodies</li>
+              <li className="hover:text-orange-600">Baby & Kids</li>
             </Link>
             <Link href={"/stickers"}>
-              <li className="hover:text-orange-600">Stickers</li>
+              <li className="hover:text-orange-600">Electronics</li>
             </Link>
             <Link href={"/mugs"}>
-              <li className="hover:text-orange-600">Mugs</li>
+              <li className="hover:text-orange-600">Kitchen</li>
             </Link>
             <Link href={"/mugs"}>
               <li className="hover:text-orange-600">Books</li>
@@ -103,37 +104,39 @@ const Navbar = ({
               <li className="hover:text-orange-600">Smartphones</li>
             </Link>
             <Link href={"/mugs"}>
-              <li className="hover:text-orange-600">Tools</li>
+              <li className="hover:text-orange-600">Offer Zone</li>
             </Link>
           </ul>
         </div>
 
-        <div className="flex cart mx-5 my-1 absolute right-0 top-1 md:top-2 ">
+        <div className="flex justify-center items-center cart mx-5 my-1 absolute right-0 top-1 md:top-2 ">
 
           <Link href={"/"} onMouseOver={() => { setDropdown(true) }}  >
-            {/* {dropdown && !sidebar && <div className="absolute right-12 bg-white shadow-lg border top-6 rounded-md py-4 px-5 w-32 z-80">
-              <ul>
-                <Link href={"/myaccount"}><li className="py-1 hover:text-orange-700 text-sm">My Account</li></Link>
-                <Link href={"/orders"}><li className="py-1 hover:text-orange-700 text-sm">Orders</li></Link>
-                <Link onClick={logout} href={"/login"}><li className="py-1 hover:text-orange-700 text-sm">Logout</li></Link>
-              </ul>
-            </div>} */}
 
-            {user.value && !sidebar && <span onMouseLeave={() => setDropdown(false)} className="flex flex-row justify-center items-center p-1 mb-4 md:mx-14 ">
-              <MdAccountCircle className="text-2xl mx-2 md:text-3xl cursor-pointer" />
-              <p className="font-semibold ">{myuser.name}</p>
+            {user.value && !sidebar && <span onMouseLeave={() => setDropdown(false)} className="flex flex-row justify-center items-center p-1 mb-4 mx-2 md:mx-14 ">
+              <FaRegUserCircle className="text-2xl mx-2 md:text-2xl cursor-pointer" />
+              <p className="font-normal ">Nikhil</p>
             </span>}
 
           </Link>
 
-          {!user.value && <Link href={"/login"}>
+          {!user.value && <Link href={"/login"} className="mb-4 mx-5">
             <button className="bg-orange-600 px-2 py-1 rounded-md text-sm text-white mx-2">Login</button>
           </Link>}
 
-          <CiShoppingCart
-            onClick={toggleCart}
-            className="text-2xl md:text-3xl cursor-pointer"
-          />
+          <button className="mb-4">
+            <CiShoppingCart
+              onClick={toggleCart}
+              className="text-2xl md:text-3xl cursor-pointer"
+            />
+          </button>
+
+          <button className="mb-4 ml-4">
+            <PiDotsThreeVertical size={22}
+              className="text-sm md:text-3xl cursor-pointer"
+            />
+          </button>
+
 
         </div>
 
