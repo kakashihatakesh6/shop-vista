@@ -1,40 +1,100 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Shop-Vista (E-Commerce)
+## Introduction
+
+![home](https://github.com/kakashihatakesh6/shop-vista/assets/95236055/fb3b46f4-41d2-4541-9979-288ee8157a69)
+![payment](https://github.com/kakashihatakesh6/shop-vista/assets/95236055/c05d1740-2863-46be-a60a-f0dba79870ea)
+![tshirts](https://github.com/kakashihatakesh6/shop-vista/assets/95236055/b1832ffa-7eea-4916-a533-5f93bb4aab89)
+
+SHOP-VISTA | E-COMMERCE | FRONT-END AND BACKEND DEVELOPMENT
+Experience seamless online shopping on our cutting-edge Shop-Vista E-Commerce website built with Next.js, MongoDB, and Node.js. Enjoy secure transactions with Razorpay payment integration, ensuring a smooth and reliable checkout process for a hassle-free shopping experience.
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
+
+Note:- If you are a complete beginner ignore these files package.json, config.json and LICENCE be focus on actual learning content.
+
+## Features
+
+•	Frontend development using Next JS for creating interactive, intuitive and responsive UI.
+•	Backend implementation using Node.js and Express.js to handle API and database integration.
+•	Database management utilized MongoDB as the database to store and manage products.
+•	Payment Integration: Implemented Razor pay gateway with pre and post transaction API integration.
+•	User authentication: Implemented user authentication and authorization using JWT and node mailer.
+
+## Technologies Used
+
+•	Frontend – Next JS, React JS, Redux, JavaScript
+•	Backend – Nodejs, Express, Next JS, JavaScript
+•	DevOps – Docker
+•	Database – MongoDB, Mongoose
+
+## Project Structure
+The repository follows a specific structure to keep the codebase organized. Below is an overview of the main directories and files:
+
+- **`/pages`**: This directory contains all the routes in the website, such as home, checkout, and other route files.
+
+- **`/pages/api`**: Api's for the shop-vista are defined in this directory. It includes separate files for different apis or components to maintain a modular and organized approach.
+
+- **`/admin`**: Admin files are stored here. These scripts are responsible for adding interactivity and dynamic behavior to the Admin panel.
+
+- **`middleware`**: Custum middleware for connecting next API's to mongoDb.
+- 
+- **`models`**: Custom models for creating schemas for storing data into databse.
+
+- **`LICENSE`**: The project's license file, specifying the terms under which the code is distributed.
+
+- **`README.md`**: The documentation file you are currently reading, providing an overview of the project, instructions, and guidelines for contributors.
+
+### Additional Directories or Files
+
+- **`/static/vendor`**: For additional vendor files used in this website.
+
+- **`config.json`**: 
+
+### Notable Files
+
+- **`package.json`**
+
 
 ## Getting Started
 
-First, run the development server:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/kakashihatakesh6/shop-vista
+   cd shop-vista
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Deployment
+   
+   Easy deployment through Vercel & Netlify
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-> Vercel
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+-> Netlify
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Contributing
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+If you have suggestions, found a bug, or want to contribute, please follow these steps:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**F4ork the repository.**
 
-## Learn More
+1. Create a new branch: git checkout -b feature/your-feature.
 
-To learn more about Next.js, take a look at the following resources:
+2. Make your changes and commit them: git commit -m 'Add some 3.feature'.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Push to the branch: git push origin feature/your-feature.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. Submit a pull request.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licensed under the MIT LICENSE.
+For details, please see the LICENSE file.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
