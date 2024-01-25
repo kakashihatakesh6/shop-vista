@@ -38,12 +38,10 @@ export default function Home() {
   ];
 
   const banners = [
-    'https://images-eu.ssl-images-amazon.com/images/G/31/img22/Wireless/devjyoti/GW/Uber/Nov/D103625178_DesktopTallHero_3000x1200._CB574597993_.jpg',
-    'https://images-eu.ssl-images-amazon.com/images/G/31/img24/Beauty/GW/atf/janv6/1500x600-1._CB585567351_.jpg',
+    'https://rukminim2.flixcart.com/fk-p-flap/1000/170/image/fd77eeeb2d597bb0.jpg?q=20',
+    'https://rukminim2.flixcart.com/fk-p-flap/1000/170/image/e7b40c1b2a494248.jpg?q=20',
     'https://rukminim2.flixcart.com/fk-p-flap/1000/170/image/df3f286955c6dc67.jpg?q=20',
-    'https://rukminim2.flixcart.com/fk-p-flap/1000/170/image/ed12b7707a04473c.jpg?q=20',
-    'https://images-eu.ssl-images-amazon.com/images/G/31/img18/Lawn_Garden/Ud/Jan2024/Unrec/02-Pc-GW-Hero-Revise._CB584630918_.jpg',
-
+    'https://rukminim2.flixcart.com/fk-p-flap/1000/170/image/ed12b7707a04473c.jpg?q=20'
 
   ]
 
