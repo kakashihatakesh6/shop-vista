@@ -7,6 +7,7 @@ const handler = async (req, res) => {
     if (req.method == 'GET') {
 
         let products = await Product.find({ category: 'tshirt' });
+        console.log("products", products)
 
         if (!products) {
             res.status(500).json({ success: false, message: "Internal Server Error!" })
@@ -33,7 +34,22 @@ const handler = async (req, res) => {
             }
         }
 
+
         res.status(200).json({ success: true, tshirts: tshirts })
+    }
+
+    if (req.method === "POST") {
+
+        // let products = await Product.find({ category: 'tshirt' });
+        let products = await Product.find({ category: req.body.data.category });
+        console.log("products", products)
+
+        if (!products) {
+            res.status(500).json({ success: false, message: "Internal Server Error!" })
+        }
+
+        res.status(200).json({ success: true, products: products })
+
     }
 }
 

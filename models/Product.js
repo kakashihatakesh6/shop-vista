@@ -7,8 +7,15 @@ const ProductSchema = new mongoose.Schema({
     img: { type: String, required: true },
     category: { type: String, required: true },
     size: { type: String },
-    color: { type: String },
+    camera: { type: String },
+    storage: { type: String },
+    processor: { type: String },
+    color: { type: String},
     price: { type: Number, required: true },
+    ratings: {
+        rate: { type: String, default: '4.5' },
+        count: { type: String, default: '304' }
+    },
     availableQty: { type: Number, required: true },
 
 }, { timestamps: true });

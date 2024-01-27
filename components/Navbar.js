@@ -22,6 +22,7 @@ const Navbar = ({
 }) => {
   const ref = useRef();
   const [dropdown, setDropdown] = useState(false);
+  const [dropHelp, setDropHelp] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const [myuser, setmyuser] = useState({})
   const router = useRouter();
@@ -62,65 +63,70 @@ const Navbar = ({
   return (
     <>
 
-      <Link href={""}>
-        {dropdown && !sidebar && <div className="main-drop absolute right-[5.1rem] bg-white shadow-lg border top-11 rounded-md py-4 px-5 w-32 z-20">
-          <ul>
-            <Link href={"/myaccount"}><li className="py-1 hover:text-orange-700 text-sm">My Account</li></Link>
-            <Link href={"/orders"}><li className="py-1 hover:text-orange-700 text-sm">Orders</li></Link>
-            <Link onClick={logout} href={"/login"}><li className="py-1 hover:text-orange-700 text-sm">Logout</li></Link>
-          </ul>
-        </div>}
-      </Link>
-
       <div className={`flex flex-col navbar justify-center md:flex-row
      md:justify-start items-center py-2 shadow-md sticky top-0
       bg-white z-10 ${!sidebar && 'overflow-hidden'}`}>
-        <div className="logo mx-8 " style={{ width: 'auto', height: 'auto' }}>
+
+        <div className="logo absolute left-1 top-1 md:relative order-1 mx-12 border-[3px] px-2 py-1 rounded-md border-orange-400" style={{ width: '101px', height: '44px' }}>
           <Link href={"/"}>
-            <img src="/logo-shopvista.png" alt="image-logo" style={{ width: "101px", height: "41px" }} />
+            <img src="/logo-shopvista.png" alt="image-logo" style={{ width: "101px", height: "34px", objectFit: 'cover' }} />
           </Link>
         </div>
-        <div className="nav my-2 mx-12">
-          <ul className="flex items-center space-x-3 md:text-md font-bold">
-            <Link href={"/tshirts"}>
+
+        <div className="nav relative top-4 my-2 mx-2 md:mx-12 md:order-2 order-3">
+          <ul className="flex justify-start md:items-center flex-wrap space-x-1  md:space-x-3 text-sm md:text-md font-bold">
+            <Link href={"/smartphones"}>
               <li className="hover:text-orange-600">Smartphones</li>
             </Link>
             <Link href={"/tshirts"}>
               <li className="hover:text-orange-600">Clothes</li>
             </Link>
-            <Link href={"/hoodies"}>
+            <Link href={"/kids"}>
               <li className="hover:text-orange-600">Baby & Kids</li>
             </Link>
-            <Link href={"/stickers"}>
+            <Link href={"/electronics"}>
               <li className="hover:text-orange-600">Electronics</li>
             </Link>
-            <Link href={"/mugs"}>
-              <li className="hover:text-orange-600">Kitchen</li>
+            <Link href={"/jewelery"}>
+              <li className="hover:text-orange-600">Jwelery</li>
             </Link>
-            <Link href={"/mugs"}>
+            <Link href={"/books"}>
               <li className="hover:text-orange-600">Books</li>
             </Link>
-            <Link href={"/mugs"}>
-              <li className="hover:text-orange-600">Smartphones</li>
+            <Link href={"/kitchen"}>
+              <li className="hover:text-orange-600">Kitchen</li>
             </Link>
-            <Link href={"/mugs"}>
+            <Link href={"/offerzone"}>
               <li className="hover:text-orange-600">Offer Zone</li>
             </Link>
           </ul>
         </div>
 
-        <div className="flex justify-center items-center cart mx-5 my-1 absolute right-0 top-1 md:top-2 ">
+        <div className="flex order-2 md:order-3 justify-center items-center cart mx-5 my-1 absolute right-0 top-1 md:top-2 ">
 
-          <Link href={"/"} onMouseOver={() => { setDropdown(true) }}  >
+          <div onMouseEnter={() => { setDropdown(true) }} onMouseLeave={() => { setDropdown(false) }} >
+           
+              {user.value && !sidebar && <span className="flex flex-row justify-center items-center p-1 mb-4 mx-2 md:mx-14 ">
+                <FaRegUserCircle className="text-2xl mx-2 md:text-2xl cursor-pointer" />
+                <p className="font-normal ">Nikhil</p>
+              </span>}
 
-            {user.value && !sidebar && <span onMouseLeave={() => setDropdown(false)} className="flex flex-row justify-center items-center p-1 mb-4 mx-2 md:mx-14 ">
-              <FaRegUserCircle className="text-2xl mx-2 md:text-2xl cursor-pointer" />
-              <p className="font-normal ">Nikhil</p>
-            </span>}
+              <div>
+                <Link href={""}>
+                  {dropdown && !sidebar && <div className="main-drop fixed right-36 bg-white shadow-lg border top-14 rounded-md py-4 px-5 w-32 z-20">
+                    <ul>
+                      <Link href={"/myaccount"}><li className="py-1 hover:text-orange-700 text-sm">My Account</li></Link>
+                      <Link href={"/orders"}><li className="py-1 hover:text-orange-700 text-sm">Orders</li></Link>
+                      <Link onClick={logout} href={"/login"}><li className="py-1 hover:text-orange-700 text-sm">Logout</li></Link>
+                    </ul>
+                  </div>}
+                </Link>
+              </div>
 
-          </Link>
+          
+          </div>
 
-          {!user.value && <Link href={"/login"} className="mb-4 mx-5">
+          {!user.value && <Link href={"/login"} className="mb-4 md:mx-5">
             <button className="bg-orange-600 px-2 py-1 rounded-md text-sm text-white mx-2">Login</button>
           </Link>}
 
@@ -131,11 +137,32 @@ const Navbar = ({
             />
           </button>
 
-          <button className="mb-4 ml-4">
+          {/* <button className="mb-4 ml-4 " >
             <PiDotsThreeVertical size={22}
               className="text-sm md:text-3xl cursor-pointer"
             />
-          </button>
+          </button> */}
+
+          <div className="flex justify-center items-center" onMouseEnter={() => setDropHelp(true)} onMouseLeave={() => { setDropHelp(false) }}>
+            <span className="mb-4 ml-4" >
+              <PiDotsThreeVertical size={22}
+                className="text-sm md:text-3xl cursor-pointer"
+              />
+            </span>
+
+            <div>
+              <Link href={""}>
+                {dropHelp && !sidebar && <div className="fixed top-12 right-5 bg-white shadow-lg border rounded-md py-4 px-5 w-32 z-50">
+                  <ul>
+                    <Link href={"/myaccount"}><li className="py-1 hover:text-orange-700 text-sm">Help Center</li></Link>
+                    <Link href={"/myaccount"}><li className="py-1 hover:text-orange-700 text-sm">Contact Us</li></Link>
+                    <Link href={"/myaccount"}><li className="py-1 hover:text-orange-700 text-sm">Feedback</li></Link>
+                  </ul>
+                </div>}
+              </Link>
+            </div>
+
+          </div>
 
 
         </div>

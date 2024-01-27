@@ -272,7 +272,7 @@ const MyAccount = () => {
 
                 <div className="flex justify-left my-3">
                     <Link href={''} onClick={handleUserSubmit}>
-                        <button className="flex mx-2 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md">
+                        <button className="flex mx-2 text-white bg-orange-500 border-0 py-2 px-2 focus:outline-none hover:bg-orange-600 rounded text-md">
                             Submit</button>
                     </Link>
                 </div>
@@ -310,7 +310,7 @@ const MyAccount = () => {
 
                 <div className="flex justify-left my-2">
                     <Link href={''} onClick={handlePassword}>
-                        <button className="flex mx-2 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md">
+                        <button className="flex mx-2 text-white bg-orange-500 border-0 py-2 px-2 focus:outline-none hover:bg-orange-600 rounded text-md">
                             Submit</button>
                     </Link>
                 </div>
