@@ -63,7 +63,8 @@ export default function App({ Component, pageProps }) {
       newCart[itemCode] = { qty: 1, price, name, size, variant }
     }
     setCart(newCart);
-    saveCart(newCart)
+    saveCart(newCart);
+    
   }
 
   // Clear Cart

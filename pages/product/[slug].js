@@ -85,7 +85,7 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
             <section className="min-h-screen text-gray-600 body-font overflow-hidden">
                 <div className="container px-5 py-16 mx-auto">
                     <div className="lg:w-4/5 mx-auto flex flex-wrap">
-                        <img alt="ecommerce" className="lg:w-1/2 w-full px-24 lg:h-auto object-cover object-top rounded" src={product.img} />
+                        <img alt="ecommerce" className="lg:w-1/2 w-full px-24 lg:h-auto object-contain object-top rounded" src={product.img} />
                         <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                             <h2 className="text-sm title-font text-gray-500 tracking-widest">SHOP VISTA</h2>
                             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{product.title} ({size}/{color})</h1>

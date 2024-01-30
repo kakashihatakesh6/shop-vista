@@ -14,7 +14,7 @@ const handler = async (req, res) => {
 
         console.log(req.body)
 
-        newUser.save();
+        await newUser.save();
         res.status(200).json({ success: true, token: token, myUser: newUser });
     }
     else {

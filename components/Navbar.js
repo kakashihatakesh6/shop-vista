@@ -75,7 +75,7 @@ const Navbar = ({
         </div>
 
         <div className="nav relative md:mx-12 md:order-2 order-3">
-          <ul className="flex py-3 px-20 rounded-md uppercase text-white md:justify-center md:items-center flex-wrap space-x-1 md:space-x-3 text-sm md:text-md font-bold "
+          <ul className="flex py-3 px-4 md:px-20 mt-10 md:mt-0 rounded-md uppercase text-white md:justify-center md:items-center flex-wrap space-x-1 md:space-x-3 text-sm md:text-md font-bold "
           style={{background: 'linear-gradient(45deg, #fa630e, #f1bf80, #ff550a)'}}>
             <Link href={"/smartphones"}>
               <li className="hover:text-orange-600">Smartphones</li>
@@ -117,7 +117,7 @@ const Navbar = ({
 
           <div onMouseEnter={() => { setDropdown(true) }} onMouseLeave={() => { setDropdown(false) }} >
            
-              {user.value && !sidebar && <span className="flex flex-row justify-center items-center p-1 mb-4 mx-2 md:mx-14 ">
+              {user.value && !sidebar && <span className="flex flex-row justify-center items-center p-1 mb-4 mx-2 md:mx-12 ">
                 <FaRegUserCircle className="text-2xl mx-2 md:text-2xl cursor-pointer" />
                 <p className="font-normal ">Nikhil</p>
               </span>}
