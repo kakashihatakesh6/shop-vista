@@ -4,7 +4,7 @@ import connectDb from "../../middleware/mongoose"
 
 const handler = async (req, res) => {
 
-    if (req.method == 'GET') {
+    if (req.method === 'GET') {
 
         let products = await Product.find({ category: 'tshirt' });
         console.log("products", products)

@@ -67,14 +67,16 @@ const Navbar = ({
      md:justify-start items-center py-2 shadow-md sticky top-0
       bg-white z-10 ${!sidebar && 'overflow-hidden'}`}>
 
-        <div className="logo absolute left-1 top-1 md:relative order-1 mx-12 border-[3px] px-2 py-1 rounded-md border-orange-400" style={{ width: '101px', height: '44px' }}>
+        <div className="logo absolute left-1 top-1 md:relative order-1 mx-12 px-2 rounded-full " style={{ width: '101px', height: '44px' }}>
           <Link href={"/"}>
-            <img src="/logo-shopvista.png" alt="image-logo" style={{ width: "101px", height: "34px", objectFit: 'cover' }} />
+            {/* <img src="/logo-shop-round.png" alt="image-logo" style={{ width: "101px", height: "34px", objectFit: 'contain' }} /> */}
+            <p className="font-semibold text-2xl">Shop<span className="text-orange-400">Vista</span></p> 
           </Link>
         </div>
 
-        <div className="nav relative top-4 my-2 mx-2 md:mx-12 md:order-2 order-3">
-          <ul className="flex justify-start md:items-center flex-wrap space-x-1  md:space-x-3 text-sm md:text-md font-bold">
+        <div className="nav relative md:mx-12 md:order-2 order-3">
+          <ul className="flex py-3 px-20 rounded-md uppercase text-white md:justify-center md:items-center flex-wrap space-x-1 md:space-x-3 text-sm md:text-md font-bold "
+          style={{background: 'linear-gradient(45deg, #fa630e, #f1bf80, #ff550a)'}}>
             <Link href={"/smartphones"}>
               <li className="hover:text-orange-600">Smartphones</li>
             </Link>
@@ -90,13 +92,22 @@ const Navbar = ({
             <Link href={"/jewelery"}>
               <li className="hover:text-orange-600">Jwelery</li>
             </Link>
+            <Link href={"/jewelery"}>
+              <li className="hover:text-orange-600">Cameras</li>
+            </Link>
+            <Link href={"/jewelery"}>
+              <li className="hover:text-orange-600">Audio</li>
+            </Link>
+            <Link href={"/jewelery"}>
+              <li className="hover:text-orange-600">Laptops</li>
+            </Link>
             <Link href={"/books"}>
               <li className="hover:text-orange-600">Books</li>
             </Link>
             <Link href={"/kitchen"}>
               <li className="hover:text-orange-600">Kitchen</li>
             </Link>
-            <Link href={"/offerzone"}>
+            <Link href={"/"}>
               <li className="hover:text-orange-600">Offer Zone</li>
             </Link>
           </ul>

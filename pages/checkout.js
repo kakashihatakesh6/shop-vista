@@ -321,7 +321,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
           <div className="flex justify-center my-2">
 
             <Link href={'/checkout'}>
-              <button onClick={initiateRazorPayment} className="flex mx-2 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md">
+              <button onClick={initiateRazorPayment} className="flex mx-2 text-white bg-orange-500 border-0 py-2 px-2 focus:outline-none hover:bg-orange-600 rounded text-md">
                 <IoBagCheckOutline className='m-1' />Pay₹{subTotal}</button>
             </Link>
             {/* <button onClick={clearCart} className="flex mx-2 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md">
