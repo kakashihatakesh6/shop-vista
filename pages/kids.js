@@ -60,7 +60,7 @@ const Kids = () => {
 
 
                                 return <div key={index} className="lg:w-1/5 md:w-1/2 p-4 shadow-lg m-5">
-                                    <Link href={`/product/${item.id}`} className="block relative rounded overflow-hidden m-0" passHref>
+                                    <Link href={`/product/${item.slug}`} className="block relative rounded overflow-hidden m-0" passHref>
                                         <img alt="ecommerce" className="h-[30vh] md:h-[36vh] block m-0 md:m-auto" src={item.img} />
                                     </Link>
                                     <div className="mt-4 text-center md:text-left">

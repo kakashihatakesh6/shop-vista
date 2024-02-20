@@ -14,11 +14,11 @@ const Electronics = () => {
     const fetchProducts = async () => {
         setIsLoading(true);
         try {
-            const data = { category: 'kids' };
-            const endpoint = `https://fakestoreapi.com/products/category/electronics`;
+            const data = { category: 'electronics' };
+            const endpoint = `${process.env.NEXT_PUBLIC_HOST}/api/getproducts`;
 
-            const res = await axios.get(endpoint);
-            const products = res.data;
+            const res = await axios.post(endpoint, {data});
+            const products = res.data.products;
             setProductsData(products);
             setIsLoading(false);
 
@@ -60,8 +60,8 @@ const Electronics = () => {
 
 
                                 return <div key={index} className="lg:w-1/5 md:w-1/2 p-4 shadow-lg m-5">
-                                    <Link href={`/product/${item.id}`} className="block relative rounded overflow-hidden m-0" passHref>
-                                        <img alt="ecommerce" className="h-[30vh] md:h-[36vh] block m-0 md:m-auto" src={item.image} />
+                                    <Link href={`/product/${item.slug}`} className="block relative rounded overflow-hidden m-0" passHref>
+                                        <img alt="ecommerce" className="h-[30vh] md:h-[36vh] block m-0 md:m-auto" src={item.img} />
                                     </Link>
                                     <div className="mt-4 text-center md:text-left">
                                         <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">{item.category}</h3>
