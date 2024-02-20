@@ -64,7 +64,7 @@ const Smartphones = () => {
                                         <img alt="ecommerce" className="h-[30vh] md:h-[36vh] block m-0 md:m-auto" src={item.img} />
                                     </Link>
                                     <div className="mt-4 text-center md:text-left">
-                                        <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-Shirts</h3>
+                                        <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">{item.category}</h3>
                                         <h2 className="text-gray-900 title-font text-lg font-medium">{item.title}</h2>
                                         <div className="mt-1">
                                             Variant: <span className='px-1 mx-1'>8 GB RAM | 128 GB ROM | Expandable Upto 1 TB</span>

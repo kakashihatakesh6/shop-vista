@@ -133,7 +133,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
         "currency": "INR",
         "name": "ShopVista", //your business name
         "description": "Test Transaction",
-        "image": "https://example.com/your_logo",
+        "image": "/logo-shop-round.png",
         "order_id": data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         // "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
         "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
@@ -155,9 +155,19 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
             console.log("error")
           }
         },
+        options: {
+          checkout: {
+            method: {
+              netbanking: 1,
+              card: 1,
+              upi: 1,
+              wallet: 1
+            }
+          }
+        },
 
         "theme": {
-          "color": "#3399cc"
+          "color": "#f9853f"
         }
       };
       console.log(options)
