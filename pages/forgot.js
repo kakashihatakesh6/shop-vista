@@ -19,7 +19,7 @@ const Forgot = () => {
             router.push('/')
         }
         console.log("router =>", router.query.token)
-    }, [])
+    }, [router])
 
     const handleChange = (e) => {
 
@@ -163,7 +163,12 @@ const Forgot = () => {
                 theme="light"
             />
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <img className="mx-auto h-10 w-auto " src="/wearme-logo.png" alt="Wornme" />
+                <img
+                    className="mx-auto h-10 w-auto "
+                    src="/logo-shop-round.png"
+                    style={{ width: 'auto', height: "75px" }}
+                    alt="shop-vista-logo"
+                />
                 <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Forgot Password</h2>
                 <p className='mt-2 text-center text-sm text-gray-600'>
                     Or
@@ -180,12 +185,12 @@ const Forgot = () => {
 
                     <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">New Password</label>
                     <div className="mt-2">
-                        <input value={password} onChange={handleChange} autoComplete='on' id="password" name="password" type="password" required className="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <input value={password} onChange={handleChange} autoComplete='on' id="password" name="password" type="password" required className="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6" />
                     </div>
 
                     <label htmlFor="cpassword" className="block text-sm font-medium leading-6 text-gray-900">Confirm New Password</label>
                     <div className="mt-2">
-                        <input value={cpassword} onChange={handleChange} autoComplete='on' id="cpassword" name="cpassword" type="password" required className="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <input value={cpassword} onChange={handleChange} autoComplete='on' id="cpassword" name="cpassword" type="password" required className="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6" />
                     </div>
 
                 </div>}
@@ -194,7 +199,7 @@ const Forgot = () => {
                 {!router.query.token && <div>
                     <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                     <div className="mt-2">
-                        <input value={email} onChange={handleChange} autoComplete='on' id="email" name="email" type="email" required className="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <input value={email} onChange={handleChange} autoComplete='on' id="email" name="email" type="email" required className="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm sm:leading-6" />
                     </div>
                 </div>
                 }
@@ -203,11 +208,11 @@ const Forgot = () => {
                 {router.query.token &&
                     <div>
                         <button disabled={password !== cpassword} onClick={resetPassword} type="Submit" className="flex w-full justify-center 
-                            rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold 
-                            leading-6 text-white shadow-sm hover:bg-indigo-500 
+                            rounded-md bg-orange-600 px-3 py-1.5 text-sm font-semibold 
+                            leading-6 text-white shadow-sm hover:bg-orange-500 
                             focus-visible:outline focus-visible:outline-2 
                             focus-visible:outline-offset-2 disabled:bg-pink-400
-                            focus-visible:outline-indigo-600">Reset Password</button>
+                            focus-visible:outline-orange-600">Reset Password</button>
                     </div>
                 }
 
@@ -216,11 +221,11 @@ const Forgot = () => {
                 {!router.query.token &&
                     <div>
                         <button onClick={sendResetEmail} type="submit" className="flex w-full justify-center 
-                            rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold
-                             leading-6 text-white shadow-sm hover:bg-indigo-500 
+                            rounded-md bg-orange-600 px-3 py-1.5 text-sm font-semibold
+                             leading-6 text-white shadow-sm hover:bg-orange-500 
                              focus-visible:outline focus-visible:outline-2
                               focus-visible:outline-offset-2 
-                              focus-visible:outline-indigo-600">Continue</button>
+                              focus-visible:outline-orange-600">Continue</button>
                     </div>
                 }
 
@@ -231,7 +236,7 @@ const Forgot = () => {
 
                 {/* <p className="mt-10 text-center text-sm text-gray-500">
                     Already a member?
-                    <Link href="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Sign in</Link>
+                    <Link href="/signup" className="font-semibold leading-6 text-orange-600 hover:text-orange-500"> Sign in</Link>
                 </p> */}
             </div >
         </div >

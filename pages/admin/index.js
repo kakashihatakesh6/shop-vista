@@ -14,9 +14,9 @@ const Index = () => {
     useEffect(() => {
 
         const token = localStorage.getItem('token');
-        // if (!token) {
-        //     router.push('/')
-        // }
+        if (!token) {
+            router.push('/admin/login')
+        }
 
         if (token) {
             
@@ -46,7 +46,7 @@ const Index = () => {
             fetchUser();
         }
 
-    }, [])
+    }, [router])
 
     
 
