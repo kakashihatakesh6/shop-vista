@@ -62,7 +62,6 @@ const Navbar = ({
 
   return (
     <>
-
       <div className={`flex flex-col navbar justify-center md:flex-row
      md:justify-start items-center py-2 shadow-md sticky top-0
       bg-white z-10 ${!sidebar && 'overflow-hidden'}`}>
