@@ -127,7 +127,7 @@ const Navbar = ({
                   {dropdown && !sidebar && <div className="main-drop fixed right-36 bg-white shadow-lg border top-14 rounded-md py-4 px-5 w-32 z-20">
                     <ul>
                       <Link href={"/myaccount"}><li className="py-1 hover:text-orange-700 text-sm">My Account</li></Link>
-                      <Link href={"/orders"}><li className="py-1 hover:text-orange-700 text-sm">Orders</li></Link>
+                      <Link href={"/myorders"}><li className="py-1 hover:text-orange-700 text-sm">Orders</li></Link>
                       <Link onClick={logout} href={"/login"}><li className="py-1 hover:text-orange-700 text-sm">Logout</li></Link>
                     </ul>
                   </div>}
@@ -192,6 +192,7 @@ const Navbar = ({
           >
             <IoIosCloseCircle />
           </span>
+
           <ol className="list-decimal font-semibold">
             {Object.keys(cart).length === 0 && (
               <div className="my-4 font-semibold">Your cart is Empty!</div>
@@ -233,6 +234,7 @@ const Navbar = ({
                       />
                     </div>
                   </div>
+
                 </li>
               );
             })}
@@ -257,6 +259,7 @@ const Navbar = ({
               Clear Cart
             </button>
           </div>
+
         </div>
       </div >
     </>
