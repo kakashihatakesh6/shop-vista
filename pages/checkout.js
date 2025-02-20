@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-script-component-in-head */
-import React, { useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 import { IoIosCloseCircle } from "react-icons/io";
 import { IoBagCheckOutline } from "react-icons/io5";
@@ -8,6 +8,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import axios from 'axios';
 import useRazorpay from 'react-razorpay';
+import { useRouter } from 'next/router';
 
 const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
   const Razorpay = useRazorpay();
@@ -23,9 +24,13 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
   const [state, setState] = useState("")
   const [disable, setDisable] = useState("")
   const [user, setUser] = useState({ value: null });
+  const router = useRouter()
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    if (!token) {
+      router.push('/login');
+    }
     const myUser = JSON.parse(localStorage.getItem("myUser"));
     setUser(myUser);
     fetchData(token);
@@ -33,6 +38,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
   }, [])
 
   console.log("user =>", user, cart);
+  console.log("checkout page =>")
 
   const fetchData = async (token) => {
     let data = { token: token }
@@ -135,7 +141,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
         "description": "Test Transaction",
         "image": "/logo-shop-round.png",
         "order_id": data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        // "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+        "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
         "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
           "name": name, //your customer's name
           "email": email,
@@ -151,6 +157,10 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
             const verifyUrl = `${process.env.NEXT_PUBLIC_HOST}/api/razorverify`;
             const res = await axios.post(verifyUrl, { response, orderID: data.id })
             console.log(res)
+            if (res.data.success) {
+              clearCart(); // Clear the cart after successful payment
+              router.push('/myorders'); // Redirect to orders page
+            }
           } catch (error) {
             console.log("error")
           }
@@ -180,11 +190,6 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
       console.log("Error OCuured!", error)
     }
   }
-
-
-
-
-
 
 
   return (
@@ -221,7 +226,6 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
                   <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email <span className='font-semibold text-red-800'>(cannot be updated)</span></label>
                   <input value={user.email} type="email" id="email" name="email" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" readOnly />
                 </div>
-
               )}
 
             </div>
@@ -300,7 +304,10 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 
             <Link href={'/checkout'}>
               <button onClick={() => { initiateRazorPayment() }} className="flex mx-2 text-white bg-orange-500 border-0 py-2 px-2 focus:outline-none hover:bg-orange-600 rounded text-md">
-                <IoBagCheckOutline className='m-1' />Pay₹{subTotal}</button>
+                <IoBagCheckOutline className='m-1' />
+                <span className='pr-1'>Pay</span>
+                ₹{subTotal}
+              </button>
             </Link>
             {/* <button onClick={clearCart} className="flex mx-2 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md">
               Clear Cart</button> */}

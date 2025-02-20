@@ -105,6 +105,7 @@ export default function App({ Component, pageProps }) {
   // Logout
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("myUser");
     setUser({ value: null });
     setKey(Math.random());
     // router.push("/")
@@ -117,6 +118,7 @@ export default function App({ Component, pageProps }) {
         waitingTime={400}
         onLoaderFinished={() => setProgress(0)}
       />
+   
     <Navbar logout={logout} user={user} key={key} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} />
     <Component user={user} buyNow={buyNow} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
     <Footer />

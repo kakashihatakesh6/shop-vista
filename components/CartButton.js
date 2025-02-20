@@ -4,7 +4,8 @@ export default function CartButton({ itemCount, onClick }) {
   return (
     <button
       onClick={onClick}
-      className="fixed top-4 right-4 bg-orange-500 text-white p-2 rounded-full shadow-lg hover:bg-orange-600 transition-colors"
+      // className="mb-4 bg-orange-500 text-white p-2 rounded-full shadow-lg hover:bg-orange-600 transition-colors"
+      className="mb-4 text-black p-2 rounded-full  transition-colors"
     >
       <ShoppingCart className="w-6 h-6" />
       {itemCount > 0 && (
