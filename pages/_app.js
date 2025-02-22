@@ -106,9 +106,10 @@ export default function App({ Component, pageProps }) {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("myUser");
+    localStorage.removeItem("cart");
     setUser({ value: null });
     setKey(Math.random());
-    // router.push("/")
+    router.push("/login")
   }
 
   return <>
