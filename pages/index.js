@@ -13,19 +13,17 @@ import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import axios from 'axios';
-
-
 import { IoIosArrowForward } from "react-icons/io";
 import Link from 'next/link';
-
-
-
+import { ChevronRight } from 'lucide-react';
+import { useRouter } from 'next/router';
 
 
 export default function Home() {
   const [ProductsData, setProductsData] = useState();
   const [ElectronicsData, setElectronicsData] = useState();
   const [IsLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
 
   useEffect(() => {
@@ -117,12 +115,6 @@ export default function Home() {
   console.log("Data =>", ElectronicsData);
 
 
-
-
-
-
-
-
   return (
     <>
       <Head>
@@ -183,6 +175,48 @@ export default function Home() {
       </section>
 
 
+      {/* Products Section */}
+      <section className="container py-8 px-4">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-semibold">Clothes, Bags & more</h2>
+          <button className='bg-orange-500 p-2 rounded-full text-white font-bold'>
+            <ChevronRight size={28} className="h-4 w-4" onClick={() => router.push('/smartphones')} />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+
+          {ElectronicsData && ElectronicsData.slice(0, 6).map((product, i) => (
+
+            <Link
+              key={i}
+              href={`/product/${i}`} 
+              className="group relative aspect-square overflow-hidden rounded-lg border hover:border-primary py-2"
+            >
+              {/* <img
+                  src={product.image}
+                  alt={product.title}
+                  className="object-cover flex h-full w-full transition-transform group-hover:scale-105 p-10"
+                /> */}
+              <div className="flex justify-center h-40 w-full px-8">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="block"
+                />
+              </div>
+              <div className="bg-gradient-to-t from-background/80 to-background/0 p-4">
+                <div className="text-xs text-muted-foreground">{product.category}</div>
+                <div className="mt-1 text-sm font-medium truncate">{product.title}</div>
+              </div>
+            </Link>
+
+          ))}
+
+        </div>
+      </section>
+
+
 
       <section className="text-gray-600 body-font space-y-4">
 
@@ -190,7 +224,7 @@ export default function Home() {
           <div className='flex w-full flex-row justify-between my-4 bg-slate-50'>
             <h3 className='text-xl md:text-2xl font-semibold'>Clothes, Bags & more</h3>
             <button className='mx-4 bg-orange-500 text-white p-1 flex text-center rounded-full'>
-              <IoIosArrowForward size={24} />
+              <IoIosArrowForward size={24} onClick={() => router.push('/smartphones')} />
             </button>
           </div>
 
@@ -245,9 +279,6 @@ export default function Home() {
               <img src={randow[3]} alt="img-2" style={{ width: 'auto', height: '220px', objectFit: 'fill' }} />
             </div>
 
-
-
-
           </div>
         </div>
       </section >
@@ -259,7 +290,7 @@ export default function Home() {
           <div className='flex w-full flex-row justify-between my-4 bg-slate-50'>
             <h3 className='text-xl md:text-2xl font-semibold'>Beauty, Food, Toys & more</h3>
             <button className='mx-4 bg-orange-500 text-white p-1 flex text-center rounded-full'>
-              <IoIosArrowForward size={24} />
+              <IoIosArrowForward size={24} onClick={() => router.push('/smartphones')} />
             </button>
           </div>
           <div className="flex flex-wrap -m-4 shadow-sm bg-slate-100">
@@ -289,7 +320,7 @@ export default function Home() {
           <div className='flex w-full flex-row justify-between my-4 bg-slate-50'>
             <h3 className='text-xl md:text-2xl font-semibold'>Top Selection</h3>
             <button className='mx-4 bg-orange-500 text-white p-1 flex text-center rounded-full'>
-              <IoIosArrowForward size={24} />
+              <IoIosArrowForward size={24} onClick={() => router.push('/smartphones')} />
             </button>
           </div>
           <div className="flex flex-wrap -m-4 shadow-sm bg-slate-100">
@@ -319,7 +350,7 @@ export default function Home() {
           <div className='flex w-full flex-row justify-between my-4 bg-slate-50'>
             <h3 className='text-xl md:text-2xl font-semibold'>Discounts for You</h3>
             <button className='mx-4 bg-orange-500 text-white p-1 flex text-center rounded-full'>
-              <IoIosArrowForward size={24} />
+              <IoIosArrowForward size={24} onClick={() => router.push('/smartphones')} />
             </button>
           </div>
           <div className="flex flex-wrap -m-4 shadow-sm bg-slate-100">
@@ -349,7 +380,7 @@ export default function Home() {
           <div className='flex w-full flex-row justify-between my-4 bg-slate-50'>
             <h3 className='text-xl md:text-2xl font-semibold'>Home & Kitchen Essentials</h3>
             <button className='mx-4 bg-orange-500 text-white p-1 flex text-center rounded-full'>
-              <IoIosArrowForward size={24} />
+              <IoIosArrowForward size={24} onClick={() => router.push('/smartphones')} />
             </button>
           </div>
           <div className="flex flex-wrap -m-4 shadow-sm bg-slate-100">
@@ -379,7 +410,7 @@ export default function Home() {
           <div className='flex w-full flex-row justify-between my-4 bg-slate-50'>
             <h3 className='text-xl md:text-2xl font-semibold'>Grooming, Books, Auto & more</h3>
             <button className='mx-4 bg-orange-500 text-white p-1 flex text-center rounded-full'>
-              <IoIosArrowForward size={24} />
+              <IoIosArrowForward size={24} onClick={() => router.push('/smartphones')} />
             </button>
           </div>
           <div className="flex flex-wrap -m-4 shadow-sm bg-slate-100">
@@ -406,8 +437,6 @@ export default function Home() {
         </div>
 
       </section >
-
-
 
 
 

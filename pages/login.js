@@ -6,9 +6,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Head from "next/head";
+import { LoaderCircle } from "lucide-react";
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter();
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true)
     try {
       const data = { email, password };
       let apiUrl = `${process.env.NEXT_PUBLIC_HOST}/api/login`;
@@ -49,11 +51,12 @@ const Login = () => {
           progress: undefined,
           theme: "light",
         });
-
+        setIsLoading(false)
         setTimeout(() => {
           router.push("/");
         }, 1000);
       } else {
+        setIsLoading(false)
         toast.error("response.error", {
           position: "top-left",
           autoClose: 1000,
@@ -70,6 +73,7 @@ const Login = () => {
       setPassword("");
 
     } catch (error) {
+      setIsLoading(false)
       toast.error("Please Enter The Valid Credentials", {
         position: "top-left",
         autoClose: 1000,
@@ -186,6 +190,7 @@ const Login = () => {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-orange-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
+                {isLoading && <LoaderCircle className="mr-2 animate-spin transition-all" />}
                 Sign in
               </button>
             </div>
