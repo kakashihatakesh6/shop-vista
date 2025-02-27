@@ -7,7 +7,7 @@ const handler = async (req, res) => {
     if (req.method === 'GET') {
 
         let products = await Product.find({ category: 'tshirt' });
-        console.log("products", products)
+        console.log("products: ", products.length)
 
         if (!products) {
             res.status(500).json({ success: false, message: "Internal Server Error!" })
