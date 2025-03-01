@@ -25,7 +25,7 @@ const Navbar = ({ user, cart, addToCart, removeFromCart, clearCart, subTotal, lo
   }, [router.pathname]);
 
   return (
-    <div className="navbar flex flex-col md:flex-row justify-center md:justify-start items-center py-2 shadow-md sticky top-0 bg-white z-10">
+    <div className="navbar flex flex-col md:flex-row justify-center md:justify-start items-center py-2 shadow-md sticky top-0 bg-white z-30">
       <div className="logo absolute left-1 md:relative mx-8 px-2 rounded-full">
         <Link href="/">
           <p className="font-semibold text-2xl">Shop<span className="text-orange-400">Vista</span></p>
@@ -53,7 +53,7 @@ const Navbar = ({ user, cart, addToCart, removeFromCart, clearCart, subTotal, lo
             {dropdown && (
               <div className="absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white py-2 shadow-lg ring-1 ring-black ring-opacity-5">
                 <Link href="/newuserprofile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Account</Link>
-                <Link href="/myorders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Orders</Link>
+                <Link href="/orders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Orders</Link>
                 <button onClick={logout} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
               </div>
             )}

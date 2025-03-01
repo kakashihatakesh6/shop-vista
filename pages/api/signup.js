@@ -7,10 +7,10 @@ const handler = async (req, res) => {
     if (req.method == "POST") {
         const {name, email} = req.body;
 
-        const ciphertext = CryptoJS.AES.encrypt(req.body.password, 'secret123').toString();
+        const ciphertext = CryptoJS.AES.encrypt(req.body.password, process.env.AES_SECRET).toString();
 
         let newUser = new User({name, email, password: ciphertext});
-        let token = jwt.sign({name: name, email: email}, 'jwttoken', {expiresIn: "2d"});
+        let token = jwt.sign({name: name, email: email}, process.env.JWT_SECRET, {expiresIn: "2d"});
 
         console.log(req.body)
 
