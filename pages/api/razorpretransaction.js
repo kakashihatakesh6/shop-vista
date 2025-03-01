@@ -7,7 +7,7 @@ const handler = async (req, res) => {
       const { amount, user, cart, totalPrice, paymentMethod, name, mobileNo, address, postalCode } = req.body.data;
       // console.log("req body =>", req.body, cart)
       const razorInstance = new Razorpay({
-        key_id: process.env.RAZOR_KEY_Id,
+        key_id: process.env.RAZOR_KEY_ID,
         key_secret: process.env.RAZOR_KEY_SECRET,
       });
 
