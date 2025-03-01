@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-script-component-in-head */
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 import { IoIosCloseCircle } from "react-icons/io";
 import { IoBagCheckOutline } from "react-icons/io5";
@@ -100,9 +100,6 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
       setState(e.target.value);
     }
 
-
-
-
   }
 
   const initiateRazorPayment = async () => {
@@ -120,7 +117,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
       }
       const endpoint = `${process.env.NEXT_PUBLIC_HOST}/api/razorpretransaction`;
       const res = await axios.post(endpoint, { data })
-      console.log("res.data =>", res.data);
+      console.log("pre-transaction result =>", res.data);
       const rData = res.data.data;
       makePayment(rData);
 
@@ -129,12 +126,19 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
     }
   }
 
+  // Generate Timestamp
+  function generateTimestamp(daysToAdd = 0) {
+    const date = new Date();
+    date.setUTCDate(date.getUTCDate() + daysToAdd); // Add days
+    return date.toISOString();
+  }
+
   const makePayment = (data) => {
     try {
-      console.log("my", data)
+      console.log("make payment input =>", data)
 
       const options = {
-        "key": process.env.RAZOR_KEY_Id, // Enter the Key ID generated from the Dashboard
+        "key": process.env.RAZOR_KEY_ID, // Enter the Key ID generated from the Dashboard
         "amount": data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         "currency": "INR",
         "name": "ShopVista", //your business name
@@ -150,19 +154,19 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
         "notes": {
           "address": adddress
         },
-
         handler: async (response) => {
           console.log("response from handler=>", response)
           try {
             const verifyUrl = `${process.env.NEXT_PUBLIC_HOST}/api/razorverify`;
-            const res = await axios.post(verifyUrl, { response, orderID: data.id })
-            console.log(res)
+            const res = await axios.post(verifyUrl, response)
+            console.log("varify razorverify res =>", res)
             if (res.data.success) {
+              createOrder(res.data.data)
               clearCart(); // Clear the cart after successful payment
-              router.push('/myorders'); // Redirect to orders page
+              router.push('/orders'); // Redirect to orders page
             }
           } catch (error) {
-            console.log("error")
+            console.log("Payment verification failed!", error)
           }
         },
         options: {
@@ -188,6 +192,54 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 
     } catch (error) {
       console.log("Error OCuured!", error)
+    }
+  }
+
+  const createOrder = async (data, reciept) => {
+    try {
+      // console.log("create order input =>", data)
+      const newOrderInput = {
+        orderId: data.razorpay_order_id,
+        user: user._id,
+        date: new Date().toISOString(),
+        status: "order_placed",
+        statusHistory: [
+          {
+            status: "order_placed",
+            date: "2025-03-01T14:30:00.000Z"
+          }
+        ],
+        total: subTotal,
+        items: Object.values(cart).map((item) => {
+          return {
+            id: "item-1",
+            name: item.name,
+            price: item.price,
+            quantity: item.qty,
+            image: "/dumbell.webp"
+          }
+        }),
+        shippingAddress: {
+          name: name,
+          street: adddress || "456 Oak Avenue",
+          city: city,
+          state: state,
+          zip: pincode,
+          country: "IND"
+        },
+        paymentMethod: "Online",
+        trackingNumber: "TRACK12346",
+        estimatedDelivery: generateTimestamp(7)
+      }
+      console.log("newOrderInput =>", newOrderInput)
+      const endpoint = `${process.env.NEXT_PUBLIC_HOST}/api/orders`;
+      const res = await axios.post(endpoint, newOrderInput)
+      if (res) {
+        console.log("order created successfully!", res)
+      }
+
+    } catch (error) {
+      console.log("some error occurred while creating order!", error)
     }
   }
 
@@ -312,13 +364,6 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
             {/* <button onClick={clearCart} className="flex mx-2 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md">
               Clear Cart</button> */}
           </div>
-
-
-
-
-
-
-
 
         </div>
       </div>

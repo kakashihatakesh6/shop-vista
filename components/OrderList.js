@@ -107,76 +107,88 @@ function ChevronDownIcon(props) {
 }
 
 export default function OrderList() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [statusFilter, setStatusFilter] = useState("all")
-  const [sortBy, setSortBy] = useState("date")
-  const [sortOrder, setSortOrder] = useState("desc")
-  const [showFilters, setShowFilters] = useState(false)
-  const [dateRange, setDateRange] = useState("all")
-  const [filteredOrders, setFilteredOrders] = useState(orders)
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("date");
+  const [sortOrder, setSortOrder] = useState("desc");
+  const [showFilters, setShowFilters] = useState(false);
+  const [dateRange, setDateRange] = useState("all");
+  const [orders, setOrders] = useState([]);
+  const [filteredOrders, setFilteredOrders] = useState([]);
 
-  // Apply filters and sorting
   useEffect(() => {
-    let result = [...orders]
+    const fetchOrders = async () => {
+      try {
+        const myUser = JSON.parse(localStorage.getItem("myUser"));
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getorders?userId=${myUser._id}`);
+        const data = await response.json();
+        console.log("orders res =>", data)
+        setOrders(data.orders);
+        setFilteredOrders(data.orders);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    };
+    fetchOrders();
+  }, []);
 
-    // Apply search filter
+  useEffect(() => {
+    let result = [...orders];
+
     if (searchQuery) {
-      const query = searchQuery.toLowerCase()
+      const query = searchQuery.toLowerCase();
       result = result.filter(
         (order) =>
           order.orderNumber.toLowerCase().includes(query) ||
-          order.items.some((item) => item.name.toLowerCase().includes(query)),
-      )
+          order.items.some((item) => item.name.toLowerCase().includes(query))
+      );
     }
 
-    // Apply status filter
     if (statusFilter !== "all") {
-      result = result.filter((order) => order.status === statusFilter)
+      result = result.filter((order) => order.status === statusFilter);
     }
 
-    // Apply date range filter
     if (dateRange !== "all") {
-      const today = new Date()
-      let startDate
+      const today = new Date();
+      let startDate;
 
       switch (dateRange) {
         case "last7days":
-          startDate = subDays(today, 7)
-          break
+          startDate = subDays(today, 7);
+          break;
         case "last30days":
-          startDate = subDays(today, 30)
-          break
+          startDate = subDays(today, 30);
+          break;
         case "last3months":
-          startDate = subDays(today, 90)
-          break
+          startDate = subDays(today, 90);
+          break;
         default:
-          startDate = null
+          startDate = null;
       }
 
       if (startDate) {
         result = result.filter((order) => {
-          const orderDate = parseISO(order.date)
-          return isWithinInterval(orderDate, { start: startDate, end: today })
-        })
+          const orderDate = parseISO(order.date);
+          return isWithinInterval(orderDate, { start: startDate, end: today });
+        });
       }
     }
 
-    // Apply sorting
     result.sort((a, b) => {
       if (sortBy === "date") {
         return sortOrder === "asc"
-          ? new Date(a.date).getTime() - new Date(b.date).getTime()
-          : new Date(b.date).getTime() - new Date(a.date).getTime()
+          ? new Date(a.date) - new Date(b.date)
+          : new Date(b.date) - new Date(a.date);
       } else {
-        return sortOrder === "asc" ? a.total - b.total : b.total - a.total
+        return sortOrder === "asc" ? a.total - b.total : b.total - a.total;
       }
-    })
+    });
 
-    setFilteredOrders(result)
-  }, [searchQuery, statusFilter, dateRange, sortBy, sortOrder])
+    setFilteredOrders(result);
+  }, [searchQuery, statusFilter, dateRange, sortBy, sortOrder, orders]);
 
-  // Toggle sort order
-  const toggleSortOrder = () => {
+   // Toggle sort order
+   const toggleSortOrder = () => {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc")
   }
 
@@ -200,7 +212,7 @@ export default function OrderList() {
     }
   }
 
-  // Get status icon
+  // Get status icona
   const getStatusIcon = (status) => {
     switch (status) {
       case "order_placed":
@@ -226,6 +238,17 @@ export default function OrderList() {
       .split("_")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ")
+  }
+
+  if (!orders) {
+    return (
+      <div className="container mx-auto px-4 py-8 flex items-center justify-center min-h-[60vh]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
+          <p className="mt-4 text-lg">Loading order details...</p>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -364,9 +387,9 @@ export default function OrderList() {
           <tbody className="bg-white divide-y divide-gray-200">
             {filteredOrders.length > 0 ? (
               filteredOrders.map((order) => (
-                <tr key={order.id} className="hover:bg-gray-50 transition-colors">
+                <tr key={order._id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">{order.orderNumber}</div>
+                    <div className="text-sm font-medium text-gray-900">{order.orderId}</div>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center space-x-2">
@@ -374,7 +397,7 @@ export default function OrderList() {
                         <div key={item.id} className="relative">
                           <img
                             className="h-16 w-16 rounded-md object-cover border border-gray-200"
-                            src={item.image || "/placeholder.svg"}
+                            src={"/no_image.png"}
                             alt={item.name}
                           />
                           <span className="absolute bottom-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 translate-y-1/2 bg-blue-600 rounded-full">
@@ -401,7 +424,7 @@ export default function OrderList() {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">${order.total.toFixed(2)}</div>
+                    <div className="text-sm font-medium text-gray-900">₹{order.total.toFixed(2)}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-500">
@@ -410,7 +433,7 @@ export default function OrderList() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <Link
-                      href={`/orderlist/${order.id}`}
+                      href={`/orders/${order.orderId}`}
                       className="text-blue-600 hover:text-blue-900 px-3 py-1 border border-blue-600 rounded-md hover:bg-blue-50 transition-colors"
                     >
                       View Details
@@ -424,7 +447,7 @@ export default function OrderList() {
                   <PackageIcon className="mx-auto h-12 w-12 text-gray-400" />
                   <h3 className="mt-4 text-lg font-medium text-gray-900">No orders found</h3>
                   <p className="mt-2 text-sm text-gray-500">
-                   {`Try adjusting your search or filter to find what you're looking for.`}
+                    {`Try adjusting your search or filter to find what you're looking for.`}
                   </p>
                 </td>
               </tr>

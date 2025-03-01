@@ -3,10 +3,10 @@ import Order from "@/models/Order";
 
 const handler = async(req, res) => {
     if (req.method === "GET") {
-        const itemSlug = req.query.slug;
-        console.log("Slug =>",itemSlug)
+        const {orderId} = req.query;
+        console.log("orderId =>",orderId)
         try {
-            const order = await Order.findOne({_id: itemSlug});
+            const order = await Order.findOne({orderId});
             console.log("Order =>", order);
             res.status(200).json({success: true, order: order});
         } catch (error) {

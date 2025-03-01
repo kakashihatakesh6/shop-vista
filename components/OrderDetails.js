@@ -5,6 +5,8 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { format } from "date-fns"
 import { orders } from "../lib/orders"
+import { DownloadIcon } from "lucide-react"
+import { generatePDF } from "@/lib/pdfGenerator"
 
 // Icons (same as before)
 function ArrowLeftIcon(props) {
@@ -176,14 +178,40 @@ function ShoppingBagIcon(props) {
 export default function OrderDetails({ orderId }) {
   const [order, setOrder] = useState(null)
   const [activeTab, setActiveTab] = useState("items")
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    // Find the order with the matching ID
-    const foundOrder = orders.find((o) => o.id === orderId)
-    if (foundOrder) {
-      setOrder(foundOrder)
+
+    const fetchOrder = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch(`/api/getorder?orderId=${orderId}`) // Adjust API endpoint accordingly
+        if (!response.ok) {
+          throw new Error("Failed to fetch order")
+        }
+        const data = await response.json()
+        console.log("order =>", data)
+        setOrder(data.order)
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    if (orderId) {
+      fetchOrder()
     }
   }, [orderId])
+
+
+  // useEffect(() => {
+  //   // Find the order with the matching ID
+  //   const foundOrder = orders.find((o) => o.id === orderId)
+  //   if (foundOrder) {
+  //     setOrder(foundOrder)
+  //   }
+  // }, [orderId])
 
   // Format status for display
   const formatStatus = (status) => {
@@ -290,6 +318,49 @@ export default function OrderDetails({ orderId }) {
         </div>
       )}
 
+      {/* Receipt and Invoice Section */}
+      <div className="bg-white border rounded-lg p-6 shadow-sm">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-medium">Order Invoice</h2>
+          <button
+            onClick={() => {
+              /* Add download logic here */
+              generatePDF(order)
+            }}
+            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center"
+          >
+            <DownloadIcon className="h-5 w-5 mr-2" />
+            Download Invoice
+          </button>
+        </div>
+        <div className="border-t pt-4">
+          <div className="space-y-2">
+            {order.items.map((item) => (
+              <div key={item.id} className="flex justify-between">
+                <span>
+                  {item.name} x{item.quantity}
+                </span>
+                <span>₹{(item.price * item.quantity).toFixed(2)}</span>
+              </div>
+            ))}
+            <div className="border-t pt-2 mt-2">
+              <div className="flex justify-between font-medium">
+                <span>Subtotal</span>
+                <span>₹{order.total.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between text-sm text-gray-500">
+                <span>Tax</span>
+                <span>₹{(order.total * 0.08).toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between font-bold mt-2">
+                <span>Total</span>
+                <span>₹{(order.total * 1.08).toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Order Details Tabs */}
       <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
         <div className="border-b">
@@ -322,7 +393,7 @@ export default function OrderDetails({ orderId }) {
                 <div key={item.id} className="flex items-start gap-4 p-4 border rounded-lg">
                   <div className="flex-shrink-0">
                     <img
-                      src={item.image || "/placeholder.svg"}
+                      src={"/no_image.png"}
                       alt={item.name}
                       className="w-20 h-20 object-cover rounded-md"
                     />
@@ -332,7 +403,7 @@ export default function OrderDetails({ orderId }) {
                     <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
                     <div className="mt-2 flex items-center gap-2">
                       <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">
-                        ${item.price.toFixed(2)}
+                        ₹{item.price.toFixed(2)}
                       </span>
                       {order.status === "delivered" && (
                         <button className="text-sm text-blue-600 hover:underline">Write a Review</button>
@@ -340,7 +411,7 @@ export default function OrderDetails({ orderId }) {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="font-medium">${(item.price * item.quantity).toFixed(2)}</p>
+                    <p className="font-medium">₹{(item.price * item.quantity).toFixed(2)}</p>
                   </div>
                 </div>
               ))}
@@ -349,7 +420,7 @@ export default function OrderDetails({ orderId }) {
                 <div className="space-y-1.5">
                   <div className="flex justify-between">
                     <span className="text-gray-500">Subtotal</span>
-                    <span>${order.total.toFixed(2)}</span>
+                    <span>₹{order.total.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-500">Shipping</span>
@@ -357,12 +428,12 @@ export default function OrderDetails({ orderId }) {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-500">Tax</span>
-                    <span>${(order.total * 0.08).toFixed(2)}</span>
+                    <span>₹{(order.total * 0.08).toFixed(2)}</span>
                   </div>
                   <div className="border-t my-2 pt-2"></div>
                   <div className="flex justify-between font-medium">
                     <span>Total</span>
-                    <span>${(order.total * 1.08).toFixed(2)}</span>
+                    <span>₹{(order.total * 1.08).toFixed(2)}</span>
                   </div>
                 </div>
               </div>
@@ -420,7 +491,7 @@ export default function OrderDetails({ orderId }) {
       </div>
 
       <div className="flex justify-between">
-        <Link href="/orderlist" className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+        <Link href="/orders" className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
           Back to Orders
         </Link>
 
@@ -474,9 +545,8 @@ function OrderTracker({ order }) {
           return (
             <div key={step.id} className="flex flex-col items-center relative z-10">
               <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${
-                  isCompleted ? "bg-blue-600 border-blue-600 text-white" : "bg-white border-gray-300 text-gray-400"
-                }`}
+                className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${isCompleted ? "bg-blue-600 border-blue-600 text-white" : "bg-white border-gray-300 text-gray-400"
+                  }`}
               >
                 {step.id === "order_placed" && <ShoppingBagIcon className="h-5 w-5" />}
                 {step.id === "processing" && <ClockIcon className="h-5 w-5" />}
@@ -485,9 +555,8 @@ function OrderTracker({ order }) {
                 {step.id === "delivered" && <CheckCircleIcon className="h-5 w-5" />}
               </div>
               <span
-                className={`mt-2 text-sm font-medium ${
-                  isCurrent ? "text-blue-600" : isCompleted ? "text-gray-900" : "text-gray-500"
-                }`}
+                className={`mt-2 text-sm font-medium ${isCurrent ? "text-blue-600" : isCompleted ? "text-gray-900" : "text-gray-500"
+                  }`}
               >
                 {step.label}
               </span>

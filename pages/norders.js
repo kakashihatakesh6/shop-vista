@@ -24,7 +24,7 @@ const Orders = () => {
             const endpoint = `${process.env.NEXT_PUBLIC_HOST}/api/getorders?userId=${myUser._id}`;
             const res = await axios.get(endpoint);
             const orderRes = res.data.orders;
-            console.log(orderRes)
+            console.log("orderRes =>", orderRes)
             setOrders(orderRes);
             setIsLoading(false);
 
@@ -34,8 +34,7 @@ const Orders = () => {
         }
     }
 
-    console.log("oders =>", Orders)
-
+    console.log("orders =>", Orders)
 
 
     return (
