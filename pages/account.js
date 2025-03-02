@@ -3,7 +3,7 @@ import { useState } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
 
-export default function ProfileUpdate() {
+export default function Account() {
     const [imagePreview, setImagePreview] = useState("/placeholder.svg?height=128&width=128")
     const [isSubmitting, setIsSubmitting] = useState(false)
     const router = useRouter();
@@ -115,7 +115,7 @@ export default function ProfileUpdate() {
                     <div className="flex items-center gap-6">
                         <div className="relative">
                             <Image
-                                src={'/t-shirt.webp' || "/placeholder.svg"}
+                                src={"/no_image.png"}
                                 alt="Profile preview"
                                 width={128}
                                 height={128}
