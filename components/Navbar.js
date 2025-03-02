@@ -52,7 +52,7 @@ const Navbar = ({ user, cart, addToCart, removeFromCart, clearCart, subTotal, lo
             </button>
             {dropdown && (
               <div className="absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white py-2 shadow-lg ring-1 ring-black ring-opacity-5">
-                <Link href="/newuserprofile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Account</Link>
+                <Link href="/account" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Account</Link>
                 <Link href="/orders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Orders</Link>
                 <button onClick={logout} className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
               </div>

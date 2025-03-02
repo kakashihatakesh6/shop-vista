@@ -136,7 +136,7 @@ const MyAccount = () => {
                         theme: "light",
                     });
                 }
-            }else{
+            } else {
                 console.log(error, "Invalid Credentials!");
                 toast.error("response.error", {
                     position: "top-left",

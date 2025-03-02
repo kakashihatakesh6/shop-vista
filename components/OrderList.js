@@ -187,8 +187,8 @@ export default function OrderList() {
     setFilteredOrders(result);
   }, [searchQuery, statusFilter, dateRange, sortBy, sortOrder, orders]);
 
-   // Toggle sort order
-   const toggleSortOrder = () => {
+  // Toggle sort order
+  const toggleSortOrder = () => {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc")
   }
 
@@ -240,16 +240,7 @@ export default function OrderList() {
       .join(" ")
   }
 
-  if (!orders) {
-    return (
-      <div className="container mx-auto px-4 py-8 flex items-center justify-center min-h-[60vh]">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-          <p className="mt-4 text-lg">Loading order details...</p>
-        </div>
-      </div>
-    )
-  }
+
 
   return (
     <div className="flex flex-col gap-6">
