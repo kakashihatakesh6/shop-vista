@@ -15,7 +15,7 @@ const Kids = () => {
         setIsLoading(true);
         try {
             const data = { category: 'kids' };
-            const endpoint = `${process.env.NEXT_PUBLIC_HOST}/api/getproducts`;
+            const endpoint = '/api/getproducts';
 
             const res = await axios.post(endpoint, { data });
             const products = res.data.products;

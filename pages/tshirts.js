@@ -16,11 +16,11 @@ const Tshirts = () => {
     setIsLoading(true);
 
     try {
-      const endpoint = `${process.env.NEXT_PUBLIC_HOST}/api/getproducts`;
+      const endpoint = '/api/getproducts';
 
       const res = await axios.get(endpoint);
       const tshirts = res.data.tshirts;
-      setproducts(tshirts)
+      setproducts(tshirts);
       setIsLoading(false);
 
     } catch (error) {
