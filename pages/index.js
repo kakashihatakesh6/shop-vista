@@ -62,7 +62,7 @@ export default function Home() {
   const fetchProductsData = async () => {
 
     try {
-      let apiUrl = `${process.env.NEXT_PUBLIC_HOST}/api/getproducts`;
+      let apiUrl = '/api/getproducts';
 
       // let axiosConfig = {
       //   headers: {
@@ -175,7 +175,7 @@ export default function Home() {
 
 
       {/* Products Section */}
-      <section className="container py-8 px-4">
+      {/* <section className="container py-8 px-4">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-semibold">Clothes, Bags & more</h2>
           <button className='bg-orange-500 p-2 rounded-full text-white font-bold'>
@@ -192,11 +192,7 @@ export default function Home() {
               href={`/product/${i}`}
               className="group relative aspect-square overflow-hidden rounded-lg border hover:border-primary py-2"
             >
-              {/* <img
-                  src={product.image}
-                  alt={product.title}
-                  className="object-cover flex h-full w-full transition-transform group-hover:scale-105 p-10"
-                /> */}
+            
               <div className="flex justify-center h-40 w-full px-2 md:px-8">
                 <img
                   src={product.image}
@@ -213,7 +209,7 @@ export default function Home() {
           ))}
 
         </div>
-      </section>
+      </section> */}
 
 
       <section className="text-gray-600 body-font space-y-4">
