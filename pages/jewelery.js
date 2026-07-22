@@ -16,7 +16,7 @@ const Jewelery = () => {
         try {
             const data = { category: 'jewelery' };
             // const endpoint = `https://fakestoreapi.com/products/category/jewelery`;
-            const endpoint = `${process.env.NEXT_PUBLIC_HOST}/api/getproducts`;
+            const endpoint = '/api/getproducts';
 
             // const res = await axios.get(endpoint);
             const res = await axios.post(endpoint, { data });

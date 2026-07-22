@@ -59,4 +59,30 @@ body{
   .swiper {
     height: 120px;
   }
+
+  /* Center category pages content on mobile */
+  .container.mx-12 {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Style product listing cards as 2 columns on mobile */
+  .body-font .container .flex.flex-wrap > div.lg\:w-1\/5 {
+    width: calc(50% - 1rem) !important;
+    min-width: 0 !important;
+    margin: 0.5rem !important;
+    padding: 0.75rem !important;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05) !important;
+  }
+
+  /* Optimize card images on mobile */
+  .body-font .container .flex.flex-wrap > div.lg\:w-1\/5 img {
+    height: 18vh !important;
+    object-fit: contain !important;
+  }
 }

@@ -15,7 +15,7 @@ const Books = () => {
         setIsLoading(true);
         try {
             const data = { category: 'smartphones' };
-            const endpoint = `${process.env.NEXT_PUBLIC_HOST}/api/getproducts`;
+            const endpoint = '/api/getproducts';
 
             const res = await axios.post(endpoint, { data });
             const smartphones = res.data.products;
